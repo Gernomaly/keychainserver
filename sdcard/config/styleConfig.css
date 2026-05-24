@@ -1,0 +1,70 @@
+*{
+	box-sizing: border-box;
+}
+
+.field div {
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 15px;
+}
+
+
+label {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+}
+
+.header{
+	background: rgba(245, 245, 245, 1);
+	border-radius: 25px;
+	border: solid 2px rgba(100, 100, 100, 1);	
+	text-align: center;
+	width: 900px;
+	margin: 0 auto 50px;
+}
+
+.settBlock{
+	height: 400px;
+	width: 820px;
+	margin: 0 auto 10px;
+	display: flex;
+}
+
+.field{
+	width: 400px;
+	height: 400px;
+	margin:0px;
+	background: rgba(245, 245, 245, 1);
+	border: solid 2px rgba(100, 100, 100, 1);
+	display: inline-block;
+	position: relative;
+}
+
+.leftField{
+	top: 0px;
+	border-bottom-left-radius: 15px;
+	border-right:0;
+	border-top-left-radius: 15px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+.rightField{
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	border-left:0;
+}
+
+#adminSet{
+	background-image:url(admin.png);
+}
+
+#pageSet{
+	background-image:url(sites.png);
+}
+
+#modiSet{
+	background-image:url(modi.png);
+}
