@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+html{
+	width: 100%;
+}
+
 .field div {
 	margin-bottom: 10px;
 	padding: 10px;
@@ -22,6 +26,13 @@ label {
 	text-align: center;
 	width: 900px;
 	margin: 0 auto 50px;
+	box-shadow: 0 1px 40px 0 gray;
+}
+
+
+#configForm{
+	width:900px;
+	margin: 0 auto;
 }
 
 .settBlock{
@@ -39,6 +50,7 @@ label {
 	border: solid 2px rgba(100, 100, 100, 1);
 	display: inline-block;
 	position: relative;
+	box-shadow: 0 1px 40px 0 gray;
 }
 
 .leftField{
@@ -52,6 +64,7 @@ label {
 
 
 .rightField{
+	background-image: linear-gradient(90deg, rgba(200, 200, 200, 1), rgba(255, 255, 255, 1));
 	border-bottom-right-radius: 15px;
 	border-top-right-radius: 15px;
 	border-left:0;
@@ -67,4 +80,15 @@ label {
 
 #modiSet{
 	background-image:url(modi.png);
+}
+
+#submitButton{
+	width: 200px;
+	height: 50px;
+	box-shadow: 0 1px 50px 0 gray;
+	border-radius: 15px;
+	font-size: 16pt;
+	background: rgba(245, 245, 245, 1);
+	border-right: 2px solid rgba(100, 100, 100, 1); 
+	border-bottom: 2px solid rgba(100, 100, 100, 1); 
 }
