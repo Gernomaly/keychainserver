@@ -38,4 +38,19 @@ platformIO (to program esp32c3)
     MOSI  ----   D10
     CLK   ----    D8
     MISO  ----    D9
-    GND   ----   GND
+    GND   ----   GND                  BATTERY
+               BAT + ---- SWITCH ----     red
+               BAT - ---- ------ ----   black
+
+Solder corresponding pins from SPI SD Card Module to ESP32 C3. Solder red battery wire to switch then solder switch to bat + on esp32. Solder black battery wire to bat - on esp32. Keep switch in off position to prevent accidental short circuiting.
+
+Program esp32 with platformio, format microSD-Card to FAT32 or exFAT and copy at least config folder (config website handling) and www folder (location for static website).
+
+Test assembly.
+
+If everything works put it in case and fix it with your method of choice (i.e: hot glue).
+
+### possible expansions
+
+- add LED to show that server is running
+- add voltag divider to adc PIN to read battery level to show level on website
