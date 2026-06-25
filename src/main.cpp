@@ -54,7 +54,9 @@ void configureServer() { //add essential handling of the webserver
   });
 
   //add config api endpoint to transmitt settings to
-  server.addHandler(new AsyncCallbackJsonWebHandler("/api/config", [](AsyncWebServerRequest *request, JsonVariant &json){    
+  server.addHandler(new AsyncCallbackJsonWebHandler("/api/config", [](AsyncWebServerRequest *request, JsonVariant &json){ 
+    if (debug) {Serial.println("request change config");}
+
     JsonObject jsonData = json.as<JsonObject>();
 
     //read json and add default values
@@ -72,10 +74,20 @@ void configureServer() { //add essential handling of the webserver
     JsonDocument config;
     File configFile = SD.open("/config.json","r");
     deserializeJson(config, configFile);
-    configFile.close();
     String config_pw;
-    if(!configFile) {config_pw = "kusch3lIsTheBest";} //set default admin passwort if none is set (i.e. missing config.json)
+
+    if(!configFile) {
+      config_pw = "kusch3lIsTheBest"; //set default admin passwort if none is set (i.e. missing config.json)
+      if (debug) {Serial.println("set config_pw to default (kusch3lIsTheBest)");}
+    }else{
+      config_pw = (const char*)config["config_pw"]; 
+      if (debug) {Serial.println("set config_pw to pw from file");}
+    }
+    
+    configFile.close();
+
     if (config_pw==old_config_pw){
+      if (debug) {Serial.println("start changing config");}
       if(new_config_pw!=""){
         config["config_pw"]=new_config_pw;
       }
