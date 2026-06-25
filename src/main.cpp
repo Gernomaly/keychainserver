@@ -30,15 +30,18 @@ bool debug = false; // debug can be toggle on via config file
 DNSServer dnsServer;
 AsyncWebServer server(80);
 
-void configureServer() {
+void configureServer() { //add essential handling of the webserver
 
+  //add fallback handling
   server.onNotFound([](AsyncWebServerRequest *request){
     request->send(404, "text/plain", "File not found");
   });
 
-  server.serveStatic("/config", SD, "/config/config.html");
-  server.serveStatic("/config.js", SD, "/config/config.js");
+  //add config website
+  server.serveStatic("/config", SD, "/config");
+  server.on("/config",[](AsyncWebServerRequest *request) { request->redirect("/config/config.html"); }); //redirect /config to config.html
 
+  //add config api endpoint to read current config.json minus admin password
   server.on("/api/config", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("application/json");
     JsonDocument doc;
@@ -50,8 +53,11 @@ void configureServer() {
     request->send(response);
   });
 
-  server.addHandler(new AsyncCallbackJsonWebHandler("/api/config", [](AsyncWebServerRequest *request, JsonVariant &json){
+  //add config api endpoint to transmitt settings to
+  server.addHandler(new AsyncCallbackJsonWebHandler("/api/config", [](AsyncWebServerRequest *request, JsonVariant &json){    
     JsonObject jsonData = json.as<JsonObject>();
+
+    //read json and add default values
     String ssid = jsonData["ssid"]|"";
     String password = jsonData["password"]|"";
     String debug = jsonData["debug"]|"off";
@@ -62,12 +68,13 @@ void configureServer() {
     String new_config_pw = jsonData["new_conf_pw"]|"";
     String old_config_pw = jsonData["old_conf_pw"]|"";
 
+    //open config file
     JsonDocument config;
     File configFile = SD.open("/config.json","r");
     deserializeJson(config, configFile);
     configFile.close();
     String config_pw;
-    if(!configFile) {config_pw = "kusch3lIsTheBest";}
+    if(!configFile) {config_pw = "kusch3lIsTheBest";} //set default admin passwort if none is set (i.e. missing config.json)
     if (config_pw==old_config_pw){
       if(new_config_pw!=""){
         config["config_pw"]=new_config_pw;
