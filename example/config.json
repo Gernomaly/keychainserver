@@ -1,0 +1,10 @@
+{
+  "config_pw": "exampleConfigPassword",
+  "ssid": "ESP 32 AP Mode",
+  "password": "exampleAPPassword",
+  "apmode": "on",
+  "www": "on",
+  "game": "on",
+  "guestbook": "off",
+  "debug": "off"
+}
