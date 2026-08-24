@@ -1,4 +1,3 @@
-
 # keychainserver
 
 This is the code for a website running on an esp32-c3 accessible via a dedicated wlan. It is intended as a fun little gadget.
@@ -91,3 +90,7 @@ If everything works put it in case and fix it with your method of choice (i.e: h
 
 - add LED to show that server is running
 - add voltag divider to adc PIN to read battery level to show on website
+
+
+# Attribution
+This is a [fork](https://github.com/kusch3l/keychainserver) and a personalized Version of the original by kusch3l
